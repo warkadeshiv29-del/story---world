@@ -194,7 +194,12 @@ footer p {
 </div>
 
 <div class="search-box">
-  <input type="text" placeholder="🔍 कहानी खोजें...">
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 कहानी खोजें..."
+    onkeyup="searchStories()"
+  >
 </div>
 
 <section id="latest">
@@ -314,6 +319,24 @@ footer p {
   <p>© 2026 Story World</p>
   <p>हर कहानी, एक नई दुनिया 🌍</p>
 </footer>
+<script>
+function searchStories() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
 
+  cards.forEach(function(card) {
+    let text = card.innerText.toLowerCase();
+
+    if (text.includes(input)) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
+
+</body>
+</html>
 </body>
 </html>     
