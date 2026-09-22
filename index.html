@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story World</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #6c2bd9;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .welcome {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px #ddd;
+    }
+
+    .story-card {
+      background: white;
+      padding: 18px;
+      border-radius: 15px;
+      margin-top: 15px;
+      box-shadow: 0 3px 10px #ddd;
+    }
+
+    button {
+      background: #6c2bd9;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📖 Story World</h1>
+    <p>हर कहानी, एक नई दुनिया</p>
+  </header>
+
+  <div class="container">
+
+    <div class="welcome">
+      <h2>स्वागत है Story World में ❤️</h2>
+      <p>
+        यहाँ आपको रोमांचक, रहस्यमयी और सीख देने वाली
+        हिंदी कहानियाँ पढ़ने को मिलेंगी।
+      </p>
+
+      <button onclick="showMessage()">
+        कहानी शुरू करें
+      </button>
+    </div>
+
+    <div class="story-card">
+      <h2>🌳 रहस्यमयी गाँव</h2>
+      <p>एक गाँव जहाँ हर रात कुछ अजीब होता था...</p>
+    </div>
+
+    <div class="story-card">
+      <h2>👻 डरावनी कहानी</h2>
+      <p>आधी रात के बाद पुराने घर में रोशनी क्यों जलती थी?</p>
+    </div>
+
+  </div>
+
+  <script>
+    function showMessage() {
+      alert("Story World में आपका स्वागत है! 📖");
+    }
+  </script>
+
+</body>
+</html>
