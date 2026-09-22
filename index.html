@@ -1,106 +1,319 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Story World</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
-    }
+<title>Story World - हर कहानी, एक नई दुनिया</title>
 
-    header {
-      background: #6c2bd9;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
 
-    header p {
-      margin: 8px 0 0;
-    }
+/* Header */
+header {
+  background: linear-gradient(135deg, #6c2bd9, #9b4dff);
+  color: white;
+  padding: 28px 15px;
+  text-align: center;
+}
 
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+header h1 {
+  margin: 0;
+  font-size: 36px;
+}
 
-    .welcome {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 10px #ddd;
-    }
+header p {
+  margin: 8px 0 0;
+  font-size: 17px;
+}
 
-    .story-card {
-      background: white;
-      padding: 18px;
-      border-radius: 15px;
-      margin-top: 15px;
-      box-shadow: 0 3px 10px #ddd;
-    }
+/* Navigation */
+nav {
+  background: #222;
+  padding: 12px 8px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
-    button {
-      background: #6c2bd9;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: #c9a7ff;
+}
+
+/* Hero */
+.hero {
+  padding: 45px 20px;
+  text-align: center;
+  background: white;
+}
+
+.hero h2 {
+  font-size: 30px;
+  margin: 0 0 12px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Search */
+.search-box {
+  text-align: center;
+  padding: 25px 15px;
+}
+
+.search-box input {
+  width: 90%;
+  max-width: 500px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Sections */
+section {
+  padding: 30px 15px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  height: 150px;
+  background: linear-gradient(135deg, #6c2bd9, #ff5f9e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 45px;
+}
+
+.card-content {
+  padding: 18px;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.button {
+  display: inline-block;
+  background: #6c2bd9;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 30px;
+}
+
+footer p {
+  margin: 5px;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>📖 Story World</h1>
-    <p>हर कहानी, एक नई दुनिया</p>
-  </header>
+<header>
+  <h1>📖 Story World</h1>
+  <p>हर कहानी, एक नई दुनिया</p>
+</header>
 
-  <div class="container">
+<nav>
+  <a href="#home">Home</a>
+  <a href="#horror">Horror</a>
+  <a href="#moral">Moral</a>
+  <a href="#mystery">Mystery</a>
+  <a href="#latest">Latest</a>
+</nav>
 
-    <div class="welcome">
-      <h2>स्वागत है Story World में ❤️</h2>
-      <p>
-        यहाँ आपको रोमांचक, रहस्यमयी और सीख देने वाली
-        हिंदी कहानियाँ पढ़ने को मिलेंगी।
-      </p>
+<div class="hero" id="home">
+  <h2>Story World में आपका स्वागत है ✨</h2>
+  <p>
+    यहाँ आपको मिलेंगी रहस्यमयी, डरावनी, रोमांचक और सीख देने वाली
+    शानदार कहानियाँ।
+  </p>
+</div>
 
-      <button onclick="showMessage()">
-        कहानी शुरू करें
-      </button>
+<div class="search-box">
+  <input type="text" placeholder="🔍 कहानी खोजें...">
+</div>
+
+<section id="latest">
+  <h2>🔥 Latest Stories</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-image">👻</div>
+      <div class="card-content">
+        <h3>रहस्यमयी रात</h3>
+        <p>एक ऐसी रात जब गाँव में कुछ ऐसा हुआ जिसे कोई भूल नहीं पाया।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
     </div>
 
-    <div class="story-card">
-      <h2>🌳 रहस्यमयी गाँव</h2>
-      <p>एक गाँव जहाँ हर रात कुछ अजीब होता था...</p>
+    <div class="card">
+      <div class="card-image">🌲</div>
+      <div class="card-content">
+        <h3>जंगल का रहस्य</h3>
+        <p>घने जंगल के अंदर छुपा था एक ऐसा राज, जिसने सबको हैरान कर दिया।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
     </div>
 
-    <div class="story-card">
-      <h2>👻 डरावनी कहानी</h2>
-      <p>आधी रात के बाद पुराने घर में रोशनी क्यों जलती थी?</p>
+    <div class="card">
+      <div class="card-image">💎</div>
+      <div class="card-content">
+        <h3>अजीब खजाना</h3>
+        <p>एक पुराने घर में मिला रहस्यमयी खजाना और शुरू हुई एक अनोखी कहानी।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
     </div>
 
   </div>
+</section>
 
-  <script>
-    function showMessage() {
-      alert("Story World में आपका स्वागत है! 📖");
-    }
-  </script>
+<section id="horror">
+  <h2>👻 Horror Stories</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-image">🏚️</div>
+      <div class="card-content">
+        <h3>पुरानी हवेली</h3>
+        <p>गाँव के बाहर खड़ी उस हवेली में आखिर ऐसा क्या था?</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">🌙</div>
+      <div class="card-content">
+        <h3>आधी रात का रहस्य</h3>
+        <p>हर रात ठीक 12 बजे एक अजीब आवाज सुनाई देती थी।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="moral">
+  <h2>🌟 Moral Stories</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-image">❤️</div>
+      <div class="card-content">
+        <h3>ईमानदारी की जीत</h3>
+        <p>एक छोटे से फैसले ने एक गरीब लड़के की पूरी जिंदगी बदल दी।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">🤝</div>
+      <div class="card-content">
+        <h3>सच्ची दोस्ती</h3>
+        <p>मुश्किल समय में सच्चा दोस्त ही असली पहचान दिखाता है।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="mystery">
+  <h2>🔍 Mystery Stories</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-image">🔐</div>
+      <div class="card-content">
+        <h3>बंद कमरे का राज</h3>
+        <p>कमरा कई सालों से बंद था, लेकिन अंदर से आवाजें आती थीं।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-image">🕵️</div>
+      <div class="card-content">
+        <h3>गुम हुआ रहस्य</h3>
+        <p>एक पुराने रहस्य की तलाश में शुरू हुई रोमांचक यात्रा।</p>
+        <a href="#" class="button">पढ़ें</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Story World</p>
+  <p>हर कहानी, एक नई दुनिया 🌍</p>
+</footer>
 
 </body>
-</html>
+</html>     
