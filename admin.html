@@ -295,7 +295,35 @@ let image_url = "";
 
     message.textContent =
       "Story publish हो रही है...";
+if (imageFile) {
 
+  message.textContent =
+    "Image upload हो रही है...";
+
+  const fileName =
+    Date.now() + "-" + imageFile.name;
+
+  const { error: uploadError } =
+    await supabaseClient.storage
+      .from("story-image")
+      .upload(fileName, imageFile);
+
+  if (uploadError) {
+
+    message.textContent =
+      "Image upload error: " + uploadError.message;
+
+    return;
+  }
+
+  const { data: publicUrlData } =
+    supabaseClient.storage
+      .from("story-image")
+      .getPublicUrl(fileName);
+
+  image_url =
+    publicUrlData.publicUrl;
+}
 
     const { data, error } =
       await supabaseClient
