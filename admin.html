@@ -269,8 +269,10 @@
     const category =
       document.getElementById("category").value;
 
-    const image_url =
-      document.getElementById("image_url").value.trim();
+    const imageFile =
+  document.getElementById("storyImage").files[0];
+
+let image_url = "";
 
     const content =
       document.getElementById("content").value.trim();
