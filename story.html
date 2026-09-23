@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Story World - कहानी</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+
+header{
+  background:#111;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+
+.story-box{
+  max-width:850px;
+  margin:30px auto;
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.story-box img{
+  width:100%;
+  max-height:450px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.category{
+  color:#777;
+  font-size:14px;
+}
+
+h1{
+  font-size:32px;
+}
+
+.content{
+  font-size:18px;
+  line-height:1.9;
+  white-space:pre-line;
+}
+
+.back{
+  display:inline-block;
+  margin-top:25px;
+  padding:10px 18px;
+  background:#111;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+}
+
+.error{
+  text-align:center;
+  padding:40px;
+  font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>📖 Story World</h2>
+  <p>हर कहानी, एक नई दुनिया</p>
+</header>
+
+<div id="storyContainer">
+  <div class="error">कहानी लोड हो रही है...</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL = "APNA_SUPABASE_PROJECT_URL";
+const SUPABASE_PUBLISHABLE_KEY = "APNA_SUPABASE_PUBLISHABLE_KEY";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+async function loadStory(){
+
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug");
+
+  const container = document.getElementById("storyContainer");
+
+  if(!slug){
+    container.innerHTML = `
+      <div class="error">
+        ❌ कहानी नहीं मिली।
+      </div>
+    `;
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from("stories")
+    .select("*")
+    .eq("slug", slug)
+    .eq("published", true)
+    .single();
+
+  if(error || !data){
+
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="error">
+        ❌ कहानी लोड नहीं हो सकी।
+        <br><br>
+        <a class="back" href="index.html">← वापस जाएँ</a>
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML = `
+
+    <article class="story-box">
+
+      ${
+        data.image_url
+        ? `<img src="${data.image_url}" alt="${data.title}">`
+        : ""
+      }
+
+      <div class="category">
+        ${data.category || "कहानी"}
+      </div>
+
+      <h1>${data.title}</h1>
+
+      <div class="content">
+        ${data.content}
+      </div>
+
+      <a class="back" href="index.html">
+        ← वापस जाएँ
+      </a>
+
+    </article>
+
+  `;
+}
+
+loadStory();
+
+</script>
+
+</body>
+</html>
