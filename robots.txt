@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://warkadeshiv29-del.github.io/story---world/sitemap.xml
