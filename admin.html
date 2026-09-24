@@ -463,17 +463,37 @@ class="delete-story-btn"
     container.appendChild(item);
   });
 }
-document.addEventListener("click", function(event) {
+document.addEventListener("click", async function(event) {
 
-  if (event.target.classList.contains("delete-story-btn")) {
-
-    const storyId =
-      event.target.getAttribute("data-story-id");
-
-    deleteStory(storyId);
+  if (!event.target.classList.contains("delete-story-btn")) {
+    return;
   }
 
+  const storyId =
+    event.target.getAttribute("data-story-id");
+
+  const confirmDelete =
+    confirm("Kya aap ye story delete karna chahte hain?");
+
+  if (!confirmDelete) return;
+
+  const { error } =
+    await supabaseClient
+      .from("stories")
+      .delete()
+      .eq("id", storyId);
+
+  if (error) {
+    alert("Delete error: " + error.message);
+    console.error(error);
+    return;
+  }
+
+  alert("✅ Story delete ho gayi!");
+
+  loadAdminStories();
 });
+
 loadAdminStories();
 </script>
 
