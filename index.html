@@ -262,6 +262,7 @@ async function loadPublishedStories() {
 
   if (error) {
     console.error("Stories load error:", error);
+     alert("Stories load error: " + error.message);
     return;
   }
 
