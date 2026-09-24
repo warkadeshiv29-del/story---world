@@ -259,7 +259,29 @@
   // ==========================================
 
   async function publishStory() {
+async function deleteStory(id) {
 
+  const confirmDelete =
+    confirm("Kya aap ye story delete karna chahte hain?");
+
+  if (!confirmDelete) return;
+
+  const { error } =
+    await supabaseClient
+      .from("stories")
+      .delete()
+      .eq("id", id);
+
+  if (error) {
+
+    alert("Delete error: " + error.message);
+    return;
+  }
+
+  alert("✅ Story delete ho gayi!");
+
+  location.reload();
+}
     const title =
       document.getElementById("title").value.trim();
 
