@@ -494,7 +494,21 @@ async function loadAdminStories() {
       <p>
         Category: ${story.category || "None"}
       </p>
-
+<button
+  data-story-id="${story.id}"
+  class="edit-story-btn"
+  style="
+    background:#1976d2;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-right:8px;
+  "
+>
+  ✏️ Edit
+</button>
       <button
         data-story-id="${story.id}"
 class="delete-story-btn"
