@@ -594,7 +594,55 @@ document.addEventListener("click", async function(event) {
 
   loadAdminStories();
 });
+async function updateStory() {
 
+  const id =
+    document.getElementById("editId").value;
+
+  const title =
+    document.getElementById("editTitle").value.trim();
+
+  const slug =
+    document.getElementById("editSlug").value.trim();
+
+  const category =
+    document.getElementById("editCategory").value;
+
+  const content =
+    document.getElementById("editContent").value.trim();
+
+  const published =
+    document.getElementById("editPublished").checked;
+
+  if (!title || !slug || !content) {
+    alert("Title, Slug और पूरी कहानी जरूरी है.");
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .from("stories")
+      .update({
+        title: title,
+        slug: slug,
+        category: category,
+        content: content,
+        published: published
+      })
+      .eq("id", id);
+
+  if (error) {
+    alert("Update error: " + error.message);
+    console.error(error);
+    return;
+  }
+
+  alert("✅ Story successfully update हो गई!");
+
+  document.getElementById("editStoryBox").style.display = "none";
+
+  loadAdminStories();
+}
 loadAdminStories();
 </script>
 
