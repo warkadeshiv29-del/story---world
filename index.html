@@ -250,9 +250,6 @@ function searchStories() {
     SUPABASE_PUBLISHABLE_KEY
   );
 
-  <script>
-async function loadPublishedStories() {
-
   const { data, error } =
     await supabaseClient
       .from("stories")
@@ -334,7 +331,7 @@ async function loadPublishedStories() {
 alert("JavaScript चल रही है");
 loadPublishedStories();
 </script>
-           </script>
+       
 </body>
 </html>
 
