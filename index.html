@@ -249,7 +249,7 @@ function searchStories() {
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
-
+async function loadPublishedStories() {
   const { data, error } =
     await supabaseClient
       .from("stories")
