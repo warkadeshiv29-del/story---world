@@ -463,7 +463,17 @@ class="delete-story-btn"
     container.appendChild(item);
   });
 }
+document.addEventListener("click", function(event) {
 
+  if (event.target.classList.contains("delete-story-btn")) {
+
+    const storyId =
+      event.target.getAttribute("data-story-id");
+
+    deleteStory(storyId);
+  }
+
+});
 loadAdminStories();
 </script>
 
