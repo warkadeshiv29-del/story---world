@@ -187,6 +187,57 @@
 <h2>📚 मेरी कहानियाँ</h2>
 
 <div id="adminStories"></div>
+    <div id="editStoryBox" style="display:none; margin-top:20px; padding:20px; background:#f5f5f5; border-radius:10px;">
+
+  <h2>✏️ कहानी Edit करें</h2>
+
+  <input type="hidden" id="editId">
+
+  <input
+    type="text"
+    id="editTitle"
+    placeholder="Story Title"
+    style="width:100%; padding:10px; margin:8px 0;"
+  >
+
+  <input
+    type="text"
+    id="editSlug"
+    placeholder="Story Slug"
+    style="width:100%; padding:10px; margin:8px 0;"
+  >
+
+  <select
+    id="editCategory"
+    style="width:100%; padding:10px; margin:8px 0;"
+  >
+    <option value="Horror">Horror</option>
+    <option value="Mystery">Mystery</option>
+    <option value="Moral">Moral</option>
+  </select>
+
+  <textarea
+    id="editContent"
+    placeholder="पूरी कहानी"
+    style="width:100%; min-height:300px; padding:10px; margin:8px 0;"
+  ></textarea>
+
+  <label>
+    <input type="checkbox" id="editPublished">
+    Published
+  </label>
+
+  <br><br>
+
+  <button onclick="updateStory()">
+    💾 Update Story
+  </button>
+
+  <button onclick="closeEdit()">
+    ❌ Cancel
+  </button>
+
+</div>
     <button class="logout" onclick="logout()">
       Logout
     </button>
