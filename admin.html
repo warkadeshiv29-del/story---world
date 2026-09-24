@@ -530,6 +530,42 @@ class="delete-story-btn"
 }
 document.addEventListener("click", async function(event) {
 
+  if (!event.target.classList.contains("edit-story-btn")) {
+    return;
+  }
+
+  const storyId =
+    event.target.getAttribute("data-story-id");
+
+  const { data: story, error } =
+    await supabaseClient
+      .from("stories")
+      .select("*")
+      .eq("id", storyId)
+      .single();
+
+  if (error) {
+    alert("Story load error: " + error.message);
+    console.error(error);
+    return;
+  }
+
+  document.getElementById("editId").value = story.id;
+  document.getElementById("editTitle").value = story.title || "";
+  document.getElementById("editSlug").value = story.slug || "";
+  document.getElementById("editCategory").value = story.category || "Moral";
+  document.getElementById("editContent").value = story.content || "";
+  document.getElementById("editPublished").checked = story.published === true;
+
+  document.getElementById("editStoryBox").style.display = "block";
+
+  window.scrollTo({
+    top: document.getElementById("editStoryBox").offsetTop,
+    behavior: "smooth"
+  });
+});
+  document.addEventListener("click", async function(event) {
+
   if (!event.target.classList.contains("delete-story-btn")) {
     return;
   }
