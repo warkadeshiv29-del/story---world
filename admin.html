@@ -310,6 +310,63 @@ h2 {
     display: block;
   }
 }
+    /* ===== EDIT STORY PROFESSIONAL DESIGN ===== */
+
+#editStoryBox {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  margin-top: 25px !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,.10);
+}
+
+#editStoryBox h2 {
+  color: #312e81;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+#editStoryBox input,
+#editStoryBox select,
+#editStoryBox textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+
+#editStoryBox textarea {
+  min-height: 280px;
+  line-height: 1.8;
+}
+
+#editStoryBox button {
+  margin-top: 8px;
+}
+
+#editStoryBox button[onclick="updateStory()"] {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+}
+
+#editStoryBox button[onclick="closeEdit()"] {
+  background: #6b7280;
+}
+
+@media (max-width: 600px) {
+  #editStoryBox {
+    padding: 18px !important;
+  }
+
+  #editStoryBox h2 {
+    font-size: 21px;
+  }
+
+  #editStoryBox button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
   </style>
 </head>
 
