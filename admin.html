@@ -87,6 +87,65 @@
     label {
       font-weight: bold;
     }
+    /* ===== ADD STORY FORM UPGRADE ===== */
+
+.admin-box label,
+form label {
+  display: block;
+  font-weight: 700;
+  color: #333;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+#storyImage {
+  padding: 12px;
+  background: #fafafa;
+  border: 2px dashed #c4b5fd;
+  cursor: pointer;
+}
+
+#storyImage:hover {
+  background: #f5f3ff;
+  border-color: #7c3aed;
+}
+
+#uploadStatus {
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+textarea#storyContent {
+  min-height: 300px;
+  line-height: 1.8;
+}
+
+button[onclick="publishStory()"] {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  font-size: 17px;
+  background: linear-gradient(135deg, #312e81, #7c3aed);
+  box-shadow: 0 5px 15px rgba(49,46,129,.22);
+}
+
+button[onclick="publishStory()"]:hover {
+  box-shadow: 0 8px 20px rgba(49,46,129,.30);
+}
+
+#message {
+  text-align: center;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+/* Published checkbox */
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+  accent-color: #4f46e5;
+}
   </style>
   <style>
 /* ===== Story World Admin Panel ===== */
