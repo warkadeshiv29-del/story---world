@@ -88,6 +88,170 @@
       font-weight: bold;
     }
   </style>
+  <style>
+/* ===== Story World Admin Panel ===== */
+
+body {
+  margin: 0;
+  background: #f5f6fa;
+  color: #222;
+  font-family: "Noto Sans Devanagari", "Mangal", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Admin Header */
+header {
+  background: linear-gradient(135deg, #111827, #312e81);
+  color: white;
+  padding: 28px 18px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,.12);
+}
+
+header h1,
+header h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin: 5px 0 0;
+  opacity: .9;
+}
+
+/* Main Container */
+main,
+.container {
+  max-width: 1100px;
+  margin: 25px auto;
+  padding: 0 15px 50px;
+}
+
+/* Forms */
+input,
+textarea,
+select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  margin: 7px 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+}
+
+textarea {
+  min-height: 220px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+}
+
+/* Buttons */
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(135deg, #312e81, #6d28d9);
+  color: white;
+  margin: 4px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  opacity: .95;
+}
+
+/* Sections / Cards */
+.admin-box,
+.story-item,
+#editStoryBox {
+  background: white !important;
+  border-radius: 16px !important;
+  padding: 22px !important;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+  border: 1px solid #e5e7eb;
+}
+
+h2 {
+  color: #312e81;
+  margin-top: 0;
+}
+
+/* Story list */
+.story-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.story-item h3 {
+  margin: 0 0 5px;
+}
+
+.story-item p {
+  margin: 3px 0;
+  color: #666;
+}
+
+/* Delete button */
+.delete-story-btn {
+  background: #dc2626 !important;
+}
+
+/* Edit button */
+.edit-story-btn {
+  background: #2563eb !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  header h1,
+  header h2 {
+    font-size: 25px;
+  }
+
+  main,
+  .container {
+    margin-top: 18px;
+    padding: 0 10px 35px;
+  }
+
+  .admin-box,
+  .story-item,
+  #editStoryBox {
+    padding: 17px !important;
+  }
+
+  textarea {
+    min-height: 190px;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .story-item {
+    display: block;
+  }
+}
+  </style>
 </head>
 
 <body>
