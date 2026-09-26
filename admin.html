@@ -986,6 +986,134 @@ async function updateStory() {
   loadAdminStories();
 }
 loadAdminStories();
+  async function publishBook() {
+
+  const title = document.getElementById("bookTitle").value.trim();
+  const author = document.getElementById("bookAuthor").value.trim();
+  const description = document.getElementById("bookDescription").value.trim();
+
+  const coverFile = document.getElementById("bookCover").files[0];
+  const pdfFile = document.getElementById("bookPdf").files[0];
+
+  const published =
+    document.getElementById("bookPublished").checked;
+
+  const message =
+    document.getElementById("bookMessage");
+
+  if (!title) {
+    message.innerText = "❌ Book का नाम डालें";
+    return;
+  }
+
+  if (!pdfFile) {
+    message.innerText = "❌ PDF File चुनें";
+    return;
+  }
+
+  message.innerText = "⏳ Book upload हो रही है...";
+
+  try {
+
+    let coverUrl = "";
+
+    // Cover upload
+    if (coverFile) {
+
+      const safeCoverName =
+        coverFile.name.replace(/[^a-zA-Z0-9._-]/g, "-");
+
+      const coverPath =
+        "book-covers/" +
+        Date.now() +
+        "-" +
+        safeCoverName;
+
+      const { error: coverError } =
+        await supabaseClient
+          .storage
+          .from("story-image")
+          .upload(coverPath, coverFile);
+
+      if (coverError) {
+        throw coverError;
+      }
+
+      const { data: coverData } =
+        supabaseClient
+          .storage
+          .from("story-image")
+          .getPublicUrl(coverPath);
+
+      coverUrl = coverData.publicUrl;
+    }
+
+    // PDF upload
+    const safePdfName =
+      pdfFile.name.replace(/[^a-zA-Z0-9._-]/g, "-");
+
+    const pdfPath =
+      "books/" +
+      Date.now() +
+      "-" +
+      safePdfName;
+
+    const { error: pdfError } =
+      await supabaseClient
+        .storage
+        .from("book-pdf")
+        .upload(pdfPath, pdfFile);
+
+    if (pdfError) {
+      throw pdfError;
+    }
+
+    const { data: pdfData } =
+      supabaseClient
+        .storage
+        .from("book-pdf")
+        .getPublicUrl(pdfPath);
+
+    const pdfUrl = pdfData.publicUrl;
+
+    // Save book in database
+    const { error: insertError } =
+      await supabaseClient
+        .from("books")
+        .insert([
+          {
+            title: title,
+            author: author,
+            description: description,
+            cover_url: coverUrl,
+            pdf_url: pdfUrl,
+            published: published
+          }
+        ]);
+
+    if (insertError) {
+      throw insertError;
+    }
+
+    message.innerText =
+      "✅ Book successfully publish हो गई!";
+
+    // Reset form
+    document.getElementById("bookTitle").value = "";
+    document.getElementById("bookAuthor").value = "";
+    document.getElementById("bookDescription").value = "";
+    document.getElementById("bookCover").value = "";
+    document.getElementById("bookPdf").value = "";
+    document.getElementById("bookPublished").checked = false;
+
+  } catch (error) {
+
+    console.error("Book upload error:", error);
+
+    message.innerText =
+      "❌ Error: " + error.message;
+  }
+  }
 </script>
 
 </body>
