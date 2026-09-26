@@ -463,7 +463,67 @@ h2 {
 
     <div class="message" id="storyMessage"></div>
 <hr>
+<hr>
 
+<h2>📖 नई Book जोड़ें</h2>
+
+<div class="admin-box">
+
+  <label>Book का नाम</label>
+  <input
+    type="text"
+    id="bookTitle"
+    placeholder="जैसे: मेरी पहली किताब"
+  >
+
+  <label>लेखक का नाम</label>
+  <input
+    type="text"
+    id="bookAuthor"
+    placeholder="लेखक का नाम"
+  >
+
+  <label>Book Description</label>
+  <textarea
+    id="bookDescription"
+    placeholder="Book के बारे में छोटी जानकारी..."
+    style="min-height:150px;"
+  ></textarea>
+
+  <label>Book Cover</label>
+  <input
+    type="file"
+    id="bookCover"
+    accept="image/*"
+  >
+
+  <label>PDF File</label>
+  <input
+    type="file"
+    id="bookPdf"
+    accept="application/pdf"
+  >
+
+  <label>
+    <input
+      type="checkbox"
+      id="bookPublished"
+    >
+    Book Publish करें
+  </label>
+
+  <br><br>
+
+  <button onclick="publishBook()">
+    📚 Publish Book
+  </button>
+
+  <div
+    class="message"
+    id="bookMessage"
+  ></div>
+
+</div>
 <h2>📚 मेरी कहानियाँ</h2>
 
 <div id="adminStories"></div>
