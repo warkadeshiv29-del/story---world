@@ -404,7 +404,13 @@ h2 {
   <!-- ADMIN PANEL -->
   <div class="box" id="adminPanel">
 
-    <h1>📚 Story Admin Panel</h1>
+    <div class="admin-dashboard-header">
+  <div class="admin-logo">📚</div>
+  <div>
+    <h1>Story World</h1>
+    <p>Admin Dashboard</p>
+  </div>
+    </div>
 
     <h2>नई कहानी जोड़ें</h2>
 
@@ -1112,6 +1118,59 @@ loadAdminStories();
 
     message.innerText =
       "❌ Error: " + error.message;
+  }
+  }
+  /* ===== PROFESSIONAL ADMIN DASHBOARD HEADER ===== */
+
+.admin-dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #111827, #312e81, #6d28d9);
+  color: white;
+  box-shadow: 0 8px 25px rgba(49, 46, 129, 0.22);
+}
+
+.admin-logo {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.15);
+  border-radius: 15px;
+  font-size: 30px;
+}
+
+.admin-dashboard-header h1 {
+  margin: 0;
+  color: white;
+  text-align: left;
+  font-size: 27px;
+}
+
+.admin-dashboard-header p {
+  margin: 2px 0 0;
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .admin-dashboard-header {
+    padding: 17px;
+  }
+
+  .admin-logo {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+  }
+
+  .admin-dashboard-header h1 {
+    font-size: 23px;
   }
   }
 </script>
