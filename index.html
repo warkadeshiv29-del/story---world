@@ -810,6 +810,102 @@ window.addEventListener(
   "hashchange",
   handleCategoryNavigation
 );
+ async function loadPublishedBooks() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("books")
+      .select("*")
+      .eq("published", true)
+      .order("created_at", { ascending: false });
+
+  const container =
+    document.getElementById("dynamicBooks");
+
+  if (!container) return;
+
+  if (error) {
+    console.error("Books load error:", error);
+    container.innerHTML =
+      "<p>Books load नहीं हो सकीं।</p>";
+    return;
+  }
+
+  container.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    container.innerHTML =
+      "<p>अभी कोई Book उपलब्ध नहीं है।</p>";
+    return;
+  }
+
+  data.forEach(book => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+      ${
+        book.cover_url
+          ? `<img
+              src="${book.cover_url}"
+              alt="${book.title}"
+              style="
+                width:100%;
+                height:220px;
+                object-fit:cover;
+                border-radius:10px;
+              "
+            >`
+          : `<div class="card-image">📖</div>`
+      }
+
+      <div class="card-content">
+
+        <h3>${book.title}</h3>
+
+        ${
+          book.author
+            ? `<small>✍️ ${book.author}</small>`
+            : ""
+        }
+
+        <p>
+          ${book.description || ""}
+        </p>
+
+        ${
+          book.pdf_url
+            ? `
+              <a
+                href="${book.pdf_url}"
+                target="_blank"
+                class="button"
+              >
+                📖 पढ़ें
+              </a>
+
+              <a
+                href="${book.pdf_url}"
+                download
+                class="button"
+              >
+                ⬇️ Download
+              </a>
+            `
+            : ""
+        }
+
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+loadPublishedBooks();  
 </script>
        
 </body>
