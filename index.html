@@ -887,13 +887,12 @@ window.addEventListener(
                 📖 पढ़ें
               </a>
 
-              <a
-                href="${book.pdf_url}"
-                download
-                class="button"
-              >
-                ⬇️ Download
-              </a>
+       <button
+  class="button"
+  onclick="downloadBook('${book.pdf_url}', '${book.title}')"
+>
+  ⬇️ Download
+</button>
             `
             : ""
         }
@@ -906,6 +905,46 @@ window.addEventListener(
 }
 
 loadPublishedBooks();  
+   async function downloadBook(pdfUrl, bookTitle) {
+
+  try {
+
+    const response = await fetch(pdfUrl);
+
+    if (!response.ok) {
+      throw new Error("PDF download नहीं हो सकी");
+    }
+
+    const blob = await response.blob();
+
+    const url =
+      window.URL.createObjectURL(blob);
+
+    const a =
+      document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+      (bookTitle || "book") + ".pdf";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
+
+  } catch (error) {
+
+    console.error("Download error:", error);
+
+    alert(
+      "Download नहीं हो पाया। PDF को खोलकर browser के Download विकल्प का इस्तेमाल करें।"
+    );
+  }
+   }
 </script>
        
 </body>
