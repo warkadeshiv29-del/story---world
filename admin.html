@@ -1241,6 +1241,119 @@ loadAdminStories();
 .book-section-title h2 {
   color: #9a3412;
 }
+  async function loadAdminBooks() {
+
+  const container = document.getElementById("adminBooks");
+
+  if (!container) return;
+
+  container.innerHTML = "<p>📚 Books लोड हो रही हैं...</p>";
+
+  const { data, error } =
+    await supabaseClient
+      .from("books")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Admin books load error:", error);
+
+    container.innerHTML =
+      "<p>❌ Books लोड नहीं हो सकीं।</p>";
+
+    return;
+  }
+
+  container.innerHTML = "";
+
+  if (!data || data.length === 0) {
+
+    container.innerHTML =
+      "<p>अभी कोई Book उपलब्ध नहीं है।</p>";
+
+    return;
+  }
+
+  data.forEach(book => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "admin-box";
+
+    card.innerHTML = `
+
+      ${
+        book.cover_url
+          ? `<img
+              src="${book.cover_url}"
+              alt="${book.title}"
+              style="
+                width:100%;
+                max-width:180px;
+                height:220px;
+                object-fit:cover;
+                border-radius:12px;
+                margin-bottom:12px;
+              "
+            >`
+          : ""
+      }
+
+      <h3>${book.title}</h3>
+
+      ${
+        book.author
+          ? `<p>✍️ ${book.author}</p>`
+          : ""
+      }
+
+      <p>
+        ${book.description || "कोई description नहीं है।"}
+      </p>
+
+      <p>
+        ${
+          book.published
+            ? "🟢 Published"
+            : "🔴 Unpublished"
+        }
+      </p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+
+        ${
+          book.pdf_url
+            ? `<a
+                href="${book.pdf_url}"
+                target="_blank"
+                class="button"
+              >
+                📖 PDF खोलें
+              </a>`
+            : ""
+        }
+
+        ${
+          book.pdf_url
+            ? `<a
+                href="${book.pdf_url}?download"
+                class="button"
+              >
+                ⬇️ Download
+              </a>`
+            : ""
+        }
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+  }
 </script>
 
 </body>
