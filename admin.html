@@ -1227,7 +1227,11 @@ loadAdminStories();
         }
       </p>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <div style="
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+      ">
 
         ${
           book.pdf_url
@@ -1252,6 +1256,21 @@ loadAdminStories();
             : ""
         }
 
+        <button
+          class="delete-book-btn"
+          data-book-id="${book.id}"
+          style="
+            background:#d32f2f;
+            color:white;
+            border:none;
+            padding:10px 16px;
+            border-radius:8px;
+            cursor:pointer;
+          "
+        >
+          🗑️ Delete Book
+        </button>
+
       </div>
 
     `;
@@ -1260,9 +1279,50 @@ loadAdminStories();
 
   });
 
+}
+
+
+// BOOK DELETE
+
+document.addEventListener("click", async function(event) {
+
+  const button =
+    event.target.closest(".delete-book-btn");
+
+  if (!button) return;
+
+  const bookId =
+    button.getAttribute("data-book-id");
+
+  const confirmDelete =
+    confirm("Kya aap ye Book delete karna chahte hain?");
+
+  if (!confirmDelete) return;
+
+  const { error } =
+    await supabaseClient
+      .from("books")
+      .delete()
+      .eq("id", bookId);
+
+  if (error) {
+
+    alert("Book delete error: " + error.message);
+
+    console.error(error);
+
+    return;
   }
+
+  alert("✅ Book delete ho gayi!");
+
   loadAdminBooks();
-</script>
+
+});
+
+
+loadAdminBooks();
+  </script>
 
 </body>
 </html>
